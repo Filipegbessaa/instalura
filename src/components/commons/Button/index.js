@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
+import { TextStyleVariantsMap } from '../../foundation/Text'
 
 const ButtonGhost = css`
   color: ${(props) => get(props.theme, `colors.${props.variant}.color`)}; 
@@ -7,12 +8,12 @@ const ButtonGhost = css`
 `
 const ButtonDefault = css`
   background-color: ${(props) => {
-        const variant = props.variant;
-        return get(props.theme, `colors.${props.variant}.color`)
-    }};
+    const variant = props.variant;
+    return get(props.theme, `colors.${props.variant}.color`)
+  }};
   color: ${(props) => {
-        return get(props.theme, `colors.${props.variant}.contrastText`)
-    }};
+    return get(props.theme, `colors.${props.variant}.contrastText`)
+  }};
 `
 export const Button = styled.button`
 border: 0;
@@ -22,15 +23,17 @@ font-weight: bold;
 opacity: 1;
 border-radius: 8px;
 
+${TextStyleVariantsMap.smallestException}
+
 ${(props) => {
-        if (props.ghost) {
-            return ButtonGhost
-        }
-        else {
-            return ButtonDefault
-        }
+    if (props.ghost) {
+      return ButtonGhost
     }
+    else {
+      return ButtonDefault
     }
+  }
+  }
   transition: opacity ${({ theme }) => theme.transition};
   border-radius: ${({ theme }) => theme.borderRadius};
   &:hover,
