@@ -1,33 +1,32 @@
-import { breakpointsMedia } from "./breakpointsMedia"
+import { breakpointsMedia } from './breakpointsMedia';
 
-export const propToStyle = (propName) => {
-    return (props) => {
-        const propValue = props[propName] // objeto ou string
+export default (propName) => (props) => {
+  // eslint-disable-next-line react/destructuring-assignment
+  const propValue = props[propName]; // objeto ou string
 
-        if (typeof propValue === 'string') {
-            return {
-                [propName]: props[propName]
-            }
-        }
-        if (typeof propValue === 'object') {
-            return breakpointsMedia({
-                xs: {
-                    [propName]: propValue.xs
-                },
-                sm: {
-                    [propName]: propValue.sm
-                },
-                md: {
-                    [propName]: propValue.md
-                },
-                lg: {
-                    [propName]: propValue.lg
-                },
-                xl: {
-                    [propName]: propValue.xl
-                },
-            })
-        }
-    }
-
-}
+  if (typeof propValue === 'string' || typeof propValue === 'number') {
+    return {
+      [propName]: props[propName],
+    };
+  }
+  if (typeof propValue === 'object') {
+    return breakpointsMedia({
+      xs: {
+        [propName]: propValue.xs,
+      },
+      sm: {
+        [propName]: propValue.sm,
+      },
+      md: {
+        [propName]: propValue.md,
+      },
+      lg: {
+        [propName]: propValue.lg,
+      },
+      xl: {
+        [propName]: propValue.xl,
+      },
+    });
+  }
+  return null
+};

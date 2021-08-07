@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { propToStyle } from '../../../theme/utils/propToStyle';
+import PropTypes from 'prop-types'
+import propToStyle from '../../../theme/utils/propToStyle';
 
 export const TextStyleVariantsMap = {
     paragraph1: css`
@@ -27,6 +27,7 @@ function Text({ tag, variant, children, ...props }) {
         <TextBase
             as={tag}
             variant={variant}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...props}
         >
             {children}
@@ -35,8 +36,8 @@ function Text({ tag, variant, children, ...props }) {
 }
 
 Text.propTypes = {
-    tag: PropTypes.string.isRequired,
-    variant: PropTypes.string.isRequired,
+    tag: PropTypes.string,
+    variant: PropTypes.string,
     children: PropTypes.node.isRequired,
 }
 
