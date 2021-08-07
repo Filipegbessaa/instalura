@@ -1,6 +1,6 @@
-import { typographyVariants } from './typographyVariants'
-import { colors } from './colors'
-import { breakpoints } from './breakpoints'
+import typographyVariants from './typographyVariants'
+import colors from './colors'
+import breakpoints from './breakpoints'
 
 
 // export default {

@@ -1,4 +1,4 @@
-import { breakpointsMedia } from './breakpointsMedia';
+import breakpointsMedia from './breakpointsMedia';
 
 export default (propName) => (props) => {
   // eslint-disable-next-line react/destructuring-assignment

@@ -25,13 +25,11 @@ function Menu() {
                 <Logo />
             </MenuWrapper.LeftSide>
             <MenuWrapper.CentralSide>
-                {links.map(link => {
-                    return (
-                        <li key={link.url}>
-                            <Text tag="a" variant="smallestException" href={link.url}>{link.texto}</Text>
-                        </li>
-                    )
-                })}
+                {links.map(link => (
+                    <li key={link.url}>
+                        <Text tag="a" variant="smallestException" href={link.url}>{link.texto}</Text>
+                    </li>
+                ))}
             </MenuWrapper.CentralSide>
             <MenuWrapper.RightSide>
                 <Button ghost variant="secondary.main">Entrar</Button>
