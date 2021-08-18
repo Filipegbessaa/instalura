@@ -27,7 +27,6 @@ export default function Home() {
         {(modalProps) => (
           <Box
             backgroundColor="white"
-            data-modal-safe-area="true"
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...modalProps}
           >
