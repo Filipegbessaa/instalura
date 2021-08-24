@@ -11,4 +11,7 @@ export default styled.div`
     ${propToStyle('backgroundImage')}
     ${propToStyle('backgroundRepeat')}
     ${propToStyle('backgroundPosition')}
+
+    ${propToStyle('boxShadow')}
+    ${propToStyle('padding')}
 `;

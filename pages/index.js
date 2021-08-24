@@ -6,10 +6,11 @@ import { Button } from '../src/components/commons/Button';
 import { Grid } from '../src/components/foundation/Layout/Grid';
 import Box from '../src/components/foundation/Layout/Box';
 import Modal from '../src/components/commons/Modal';
+import RegistrationForm from '../src/components/patterns/RegistrationForm';
 
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <Box
       flex={1}
@@ -25,13 +26,8 @@ export default function Home() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}>
         {(modalProps) => (
-          <Box
-            backgroundColor="white"
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...modalProps}
-          >
-            <div>Nosso conteúdo pro modal</div>
-          </Box>)}
+          <RegistrationForm modalProps={modalProps} />
+        )}
       </Modal>
       <Menu />
 
