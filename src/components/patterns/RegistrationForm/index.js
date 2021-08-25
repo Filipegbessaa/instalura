@@ -1,15 +1,27 @@
 // import { set } from 'lodash'
 import React, { useState } from 'react'
+import { Lottie } from '@crello/react-lottie';
+import successAnimation from './animations/success.json'
+import errorAnimation from './animations/error.json'
 import { Button } from '../../commons/Button';
 import TextField from '../../forms/TextField';
 import Box from '../../foundation/Layout/Box';
 import { Grid } from '../../foundation/Layout/Grid';
 import Text from '../../foundation/Text';
 
+const formStates = {
+    DEFAULT: 'DEFAULT',
+    LOADING: 'LOADING',
+    DONE: 'DONE',
+    ERROR: 'ERROR',
+};
+
 export function FormContent() {
+    const [isFormSubmited, setIsFormSubmited] = useState(false);
+    const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
     const [userInfo, setUserInfo] = useState({
         userName: 'filipeabessa',
-        email: 'filipegbessa@gmail.com',
+        name: 'Filipe Bessa',
     })
 
     const handleChange = (event) => {
@@ -20,13 +32,45 @@ export function FormContent() {
         })
     }
 
-    const isFormInvalid = userInfo.userName.length === 0 || userInfo.email.length === 0
+    const isFormInvalid = userInfo.userName.length === 0 || userInfo.name.length === 0
 
 
     return (
         <form onSubmit={(event) => {
             event.preventDefault()
-            console.log('O formulário está pronto, vamos cadastrar de fato o usuário.')
+
+            setIsFormSubmited(true);
+
+            // Data Transfer Object
+            const userDTO = {
+                username: userInfo.userName,
+                name: userInfo.name,
+            };
+
+            fetch('https://instalura-api.vercel.app/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userDTO),
+            })
+                .then((respostaDoServidor) => {
+                    if (respostaDoServidor.ok) {
+                        return respostaDoServidor.json();
+                    }
+
+                    throw new Error('Não foi possível cadastrar o usuário agora :(');
+                })
+                .then((respostaConvertidaEmObjeto) => {
+                    setSubmissionStatus(formStates.DONE);
+                    // eslint-disable-next-line no-console
+                    console.log(respostaConvertidaEmObjeto);
+                })
+                .catch((error) => {
+                    setSubmissionStatus(formStates.ERROR);
+                    // eslint-disable-next-line no-console
+                    console.error(error);
+                });
         }}>
             <Text
                 variant="title"
@@ -46,13 +90,13 @@ export function FormContent() {
             </Text>
             <div>
                 <TextField
-                    placeholder="Email"
-                    name="email"
-                    value={userInfo.email}
+                    placeholder="Nome"
+                    name="name"
+                    value={userInfo.nome}
                     onChange={handleChange} />
                 <TextField
                     placeholder="Usuário"
-                    name="user"
+                    name="userName"
                     value={userInfo.userName}
                     onChange={handleChange}
                 />
@@ -64,6 +108,30 @@ export function FormContent() {
                 >
                     Cadastrar
                 </Button>
+                {isFormSubmited && submissionStatus === formStates.DONE && (
+                    <Box>
+                        <Lottie
+                            width="150px"
+                            height="150px"
+                            config={{ animationData: successAnimation, loop: true, autoplay: true }}
+                        />
+                        {/* https://lottiefiles.com/43920-success-alert-icon */}
+                    </Box>
+                )}
+
+                {isFormSubmited && submissionStatus === formStates.ERROR && (
+                    <Box
+                        display="flex"
+                        justifyContent="center"
+                    >
+                        <Lottie
+                            width="150px"
+                            height="150px"
+                            config={{ animationData: errorAnimation, loop: true, autoplay: true }}
+                        />
+                        {/* https://lottiefiles.com/43920-success-alert-icon */}
+                    </Box>
+                )}
             </div>
         </form>
     )
