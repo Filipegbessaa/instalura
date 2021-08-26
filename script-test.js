@@ -1,3 +1,5 @@
 const shell = require('shelljs');
 
-shell.exec('git diff --name-only branch-scripts-tests..main');
+const resultado = shell.exec('git diff --name-only branch-scripts-tests..main');
+
+console.log(resultado.stdout.split('\n'));
