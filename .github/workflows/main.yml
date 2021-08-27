@@ -32,6 +32,9 @@ jobs:
       - name: Mostra versão do Node
         run: node -v
         
+      - name: Instalar dependências
+        run: npm install
+        
       - name: Roda o linter
         run: npm run lint
 
