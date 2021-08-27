@@ -30,7 +30,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Mostra versão do Node
-        run: node -V
+        run: node -v
         
       - name: Roda o linter
         run: npm run lint
