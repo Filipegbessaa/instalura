@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Menu from '../src/components/commons/Menu';
 import Footer from '../src/components/commons/Footer';
 import Text from '../src/components/foundation/Text';
-import { Button } from '../src/components/commons/Button';
+import Button from '../src/components/commons/Button';
 import { Grid } from '../src/components/foundation/Layout/Grid';
 import Box from '../src/components/foundation/Layout/Box';
 import Modal from '../src/components/commons/Modal';
@@ -10,7 +10,7 @@ import RegistrationForm from '../src/components/patterns/RegistrationForm';
 
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Box
       flex={1}
@@ -29,7 +29,9 @@ export default function Home() {
           <RegistrationForm modalProps={modalProps} />
         )}
       </Modal>
-      <Menu />
+      <Menu
+        onRegisterClick={() => setIsModalOpen(true)}
+      />
 
       <Grid.Container
         marginTop={{

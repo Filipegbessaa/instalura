@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Lottie } from '@crello/react-lottie';
 import successAnimation from './animations/success.json'
 import errorAnimation from './animations/error.json'
-import { Button } from '../../commons/Button';
+import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
 import Box from '../../foundation/Layout/Box';
 import { Grid } from '../../foundation/Layout/Grid';

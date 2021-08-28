@@ -1,10 +1,11 @@
 import React from 'react'
+import Proptypes from 'prop-types'
 import { MenuWrapper } from "./styles/MenuWrapper";
 import Logo from "../../../theme/Logo"
-import { Button } from "../Button"
+import Button from "../Button"
 import Text from '../../foundation/Text';
 
-function Menu() {
+function Menu({ onRegisterClick }) {
     const links = [
         {
             texto: "Home",
@@ -27,16 +28,20 @@ function Menu() {
             <MenuWrapper.CentralSide>
                 {links.map(link => (
                     <li key={link.url}>
-                        <Text tag="a" variant="smallestException" href={link.url}>{link.texto}</Text>
+                        <Text tag="Link" variant="smallestException" href={link.url}>{link.texto}</Text>
                     </li>
                 ))}
             </MenuWrapper.CentralSide>
             <MenuWrapper.RightSide>
-                <Button ghost variant="secondary.main">Entrar</Button>
-                <Button variant="primary.main">Cadastrar</Button>
+                <Button ghost variant="secondary.main" href="/app/login">Entrar</Button>
+                <Button variant="primary.main" onClick={onRegisterClick}>Cadastrar</Button>
             </MenuWrapper.RightSide>
         </MenuWrapper>
     )
+}
+
+Menu.propTypes = {
+    onRegisterClick: Proptypes.func.isRequired
 }
 
 export default Menu
