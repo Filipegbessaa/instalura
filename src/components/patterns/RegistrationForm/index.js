@@ -92,7 +92,7 @@ export function FormContent() {
                 <TextField
                     placeholder="Nome"
                     name="name"
-                    value={userInfo.nome}
+                    value={userInfo.name}
                     onChange={handleChange} />
                 <TextField
                     placeholder="Usuário"
