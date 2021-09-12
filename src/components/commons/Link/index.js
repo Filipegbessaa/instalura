@@ -23,15 +23,12 @@ const StyledLink = styled.a`
 
 function Link({ href, children, ...props }) {
     return (
-        <NextLink
-            href={href}
-            passHref
-        >
+        <NextLink href={href} passHref>
             <StyledLink {...props}>
                 {children}
             </StyledLink>
         </NextLink>
-    )
+    );
 }
 
 Link.propTypes = {
