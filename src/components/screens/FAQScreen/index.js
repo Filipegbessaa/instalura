@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Text from '../../foundation/Text';
-import Menu from '../../commons/Menu';
-import Footer from '../../commons/Footer';
-import Modal from '../../commons/Modal';
-import RegistrationForm from '../../patterns/RegistrationForm';
 import Box from '../../foundation/Layout/Box';
 import { Grid } from '../../foundation/Layout/Grid';
 
 export default function FAQScreen({ faqCategories }) {
-    const [isModalOpen, setModalState] = React.useState(false);
 
     return (
         <Box
@@ -17,20 +12,6 @@ export default function FAQScreen({ faqCategories }) {
             flexDirection="column"
             flex="1"
         >
-            <Modal
-                isOpen={isModalOpen}
-                onClose={() => {
-                    setModalState(false);
-                }}
-            >
-                {(propsDoModal) => (
-                    <RegistrationForm modalProps={propsDoModal} />
-                )}
-            </Modal>
-
-            <Menu
-                onRegisterClick={() => setModalState(true)}
-            />
 
             <Grid.Container style={{ flex: 1 }}>
                 <Grid.Row
@@ -101,7 +82,6 @@ export default function FAQScreen({ faqCategories }) {
                 </Grid.Row>
             </Grid.Container>
 
-            <Footer />
         </Box>
     );
 }

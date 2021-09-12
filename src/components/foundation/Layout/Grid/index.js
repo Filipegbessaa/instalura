@@ -40,11 +40,11 @@ const Row = styled.div`
     margin-left: -16px;
 
     ${propToStyle('flex')}
+    ${propToStyle('justifyContent')}
     ${propToStyle('marginTop')}
+    ${propToStyle('marginBottom')}
     ${propToStyle('marginLeft')}
     ${propToStyle('marginRight')}
-    ${propToStyle('justifyContent')}
-    ${propToStyle('marginBottom')}
     ${propToStyle('flexDirection')}
 `;
 
@@ -136,11 +136,11 @@ const Col = styled.div`
   }}
 
 	${propToStyle('display')}
+  ${propToStyle('order')}
 	${propToStyle('alignItems')}
 	${propToStyle('justifyContent')}
 	${propToStyle('flexDirection')}
   ${propToStyle('paddingRight')}
-  ${propToStyle('order')}
 
 `;
 
