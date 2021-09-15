@@ -41,7 +41,7 @@ function Menu({ onRegisterClick }) {
 }
 
 Menu.propTypes = {
-    onRegisterClick: Proptypes.func.isRequired
+    onRegisterClick: Proptypes.func.isRequired,
 }
 
 export default Menu
