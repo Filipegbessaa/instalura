@@ -18,11 +18,18 @@ describe('/pages/app/login/', () => {
         // verificar se estamos na página /app/profile
         cy.url().should('include', '/app/profile');
 
+        // Temos o token?
+        cy.wait('@userLogin')
+            .then((intercept) => {
+                // token do servidor
+                const { token } = intercept.response.body.data;
 
+                cy.getCookie('APP_TOKEN')
+                    .should('exist')
+                    // token do cookie é igual ao do server?
+                    .should('have.property', 'value', token);
+            });
 
-        // preencher o input de usuário
-        // preencher o input de senha
-        // clicar no botão de submit
 
         // verificar que a página /app/profile foi carregada
     })
